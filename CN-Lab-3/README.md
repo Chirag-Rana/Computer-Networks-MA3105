@@ -6,21 +6,21 @@ This project contains two Python server implementations to demonstrate fundament
 
 This repository is divided into two parts:
 
-1.  [cite_start]**Part 1: HTTP Caching Server**: An HTTP server that uses `ETag` and `Last-Modified` headers to reduce redundant data transfers by leveraging browser caching[cite: 4].
-2.  [cite_start]**Part 2: Cookie Management Server**: An HTTP server built with raw sockets that manages client sessions using cookies to overcome the stateless nature of HTTP[cite: 21, 38].
+1.  **Part 1: HTTP Caching Server**: An HTTP server that uses `ETag` and `Last-Modified` headers to reduce redundant data transfers by leveraging browser caching.
+2.  **Part 2: Cookie Management Server**: An HTTP server built with raw sockets that manages client sessions using cookies to overcome the stateless nature of HTTP.
 
 ---
 
 ## Part 1: HTTP Caching Server
 
-[cite_start]This server demonstrates how to implement conditional requests to optimize network bandwidth[cite: 17]. It serves a single `index.html` file.
+This server demonstrates how to implement conditional requests to optimize network bandwidth. It serves a single `index.html` file.
 
 ### How it Works
 
-* **`Last-Modified` Header**: The server includes the file's last modification time in the response. [cite_start]A client can use this in a subsequent request with the `If-Modified-Since` header[cite: 10].
-* **`ETag` Header**: The server generates an MD5 hash of the file's content and sends it as an `ETag` (entity tag). This is a strong validator. [cite_start]The client can send this value back in an `If-None-Match` header to check if the content has changed[cite: 9, 18].
-* [cite_start]**`304 Not Modified`**: If the client's cached version is still valid (based on the headers), the server responds with a `304 Not Modified` status and an empty body, saving bandwidth[cite: 13].
-* [cite_start]**`200 OK`**: If the file has been modified or the client has no cache, the server sends the full content along with the new `ETag` and `Last-Modified` headers[cite: 15].
+* **`Last-Modified` Header**: The server includes the file's last modification time in the response. A client can use this in a subsequent request with the `If-Modified-Since` header.
+* **`ETag` Header**: The server generates an MD5 hash of the file's content and sends it as an `ETag` (entity tag). This is a strong validator. The client can send this value back in an `If-None-Match` header to check if the content has changed.
+* **`304 Not Modified`**: If the client's cached version is still valid (based on the headers), the server responds with a `304 Not Modified` status and an empty body, saving bandwidth.
+* **`200 OK`**: If the file has been modified or the client has no cache, the server sends the full content along with the new `ETag` and `Last-Modified` headers.
 
 ### How to Run
 
@@ -43,14 +43,14 @@ This repository is divided into two parts:
 
 ## Part 2: Cookie Management Server
 
-[cite_start]This server is built using Python's low-level `socket` module to demonstrate how cookies are used for client identification and session management[cite: 22, 36].
+This server is built using Python's low-level `socket` module to demonstrate how cookies are used for client identification and session management.
 
 ### How it Works
 
-* [cite_start]The server listens for TCP connections on a raw socket[cite: 25].
-* [cite_start]It manually parses HTTP request headers to check for a `Cookie` header[cite: 32, 37].
-* [cite_start]**First-Time Visit**: If no `session_id` cookie is found, the server sends a response that includes a `Set-Cookie` header, assigning a value like "User123"[cite: 28, 29]. [cite_start]It displays a generic welcome message[cite: 30].
-* [cite_start]**Returning Visit**: If a `session_id` cookie is found in the request, the server extracts its value and displays a personalized "Welcome back" message, demonstrating a persistent session[cite: 33, 34].
+* The server listens for TCP connections on a raw socket.
+* It manually parses HTTP request headers to check for a `Cookie` header.
+* **First-Time Visit**: If no `session_id` cookie is found, the server sends a response that includes a `Set-Cookie` header, assigning a value like "User123". It displays a generic welcome message.
+* **Returning Visit**: If a `session_id` cookie is found in the request, the server extracts its value and displays a personalized "Welcome back" message, demonstrating a persistent session.
 
 ### How to Run
 
