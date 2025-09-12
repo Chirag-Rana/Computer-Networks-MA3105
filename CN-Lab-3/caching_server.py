@@ -27,40 +27,41 @@ class CachingHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
             with open(file_path, 'rb') as f:
                 content = f.read()
             
-            # Generate ETag using MD5 hash of the file content [cite: 9]
+            # Generate ETag using MD5 hash of the file content
             etag = f'"{hashlib.md5(content).hexdigest()}"'
             
-            # Check client's cache validation headers [cite: 11]
+            # Check client's cache validation headers
             client_etag = self.headers.get('If-None-Match')
             client_last_modified = self.headers.get('If-Modified-Since')
 
             # Validate ETag (strong validator)
             if client_etag and client_etag == etag:
-                self.send_response(304, "Not Modified") # [cite: 13]
+                self.send_response(304, "Not Modified")
                 self.end_headers()
                 return
 
             # Validate Last-Modified (weak validator)
             if client_last_modified:
                 try:
-                    # Parse the date string from the header
+                    # Parse the date string from the header using the correct format
+                    # --- THIS IS THE CORRECTED LINE ---
                     client_modified_time = time.mktime(
-                        time.strptime(client_last_modified, self.date_time_string_format())
+                        time.strptime(client_last_modified, "%a, %d %b %Y %H:%M:%S GMT")
                     )
                     # If file hasn't been modified since client's last request, send 304
                     if last_modified_time <= client_modified_time:
-                        self.send_response(304, "Not Modified") # [cite: 13]
+                        self.send_response(304, "Not Modified")
                         self.end_headers()
                         return
                 except (ValueError, TypeError):
                     # Ignore invalid date formats
                     pass
 
-            # If cache is invalid or non-existent, send the full response [cite: 15]
+            # If cache is invalid or non-existent, send the full response
             self.send_response(200, "OK")
             self.send_header("Content-type", "text/html")
             self.send_header("Content-Length", str(len(content)))
-            self.send_header("Last-Modified", last_modified_header) # [cite: 10]
+            self.send_header("Last-Modified", last_modified_header)
             self.send_header("ETag", etag)
             self.end_headers()
             self.wfile.write(content)
