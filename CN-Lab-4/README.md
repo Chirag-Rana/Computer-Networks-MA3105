@@ -31,7 +31,7 @@ To run this project, you will need:
     ```
 
 3.  **Add a video file:**
-    Place a video file named `video.mp4` in the root directory of the project. You can change the video file path by editing the `VIDEO_PATH` variable in `server.py`.
+    Place a video file in the root directory of the project. You can change the video file path by editing the `VIDEO_PATH` variable in `server.py`. Currently a        sample video URL has been placed in the variable.
 
 ## 🚀 How to Run
 
