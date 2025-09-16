@@ -10,7 +10,7 @@ CLIENT_PORT = 9999
 # Max size of each UDP packet chunk
 CHUNK_SIZE = 65500 
 # Video file to stream
-VIDEO_PATH = 'video.mp4' 
+VIDEO_PATH = 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4' 
 
 def main():
     """
