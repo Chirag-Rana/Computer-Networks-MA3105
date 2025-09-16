@@ -22,8 +22,8 @@ Follow these steps to run the application. You will need two separate terminal w
 1.  **Clone the Repository**
 
     ```bash
-    git clone [https://github.com/your-username/your-repository-name.git](https://github.com/your-username/your-repository-name.git)
-    cd your-repository-name
+    git clone https://github.com/Chirag-Rana/Computer-Networks-MA3105
+    cd CN-Lab-1
     ```
 
 2.  **Start the Server**
