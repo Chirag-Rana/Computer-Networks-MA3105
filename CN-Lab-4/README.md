@@ -21,8 +21,8 @@ To run this project, you will need:
 
 1.  **Clone the repository:**
     ```bash
-    git clone <your-repository-url>
-    cd <repository-directory>
+    git clone https://github.com/Chirag-Rana/Computer-Networks-MA3105
+    cd CN-Lab-4
     ```
 
 2.  **Install the required Python libraries:**
