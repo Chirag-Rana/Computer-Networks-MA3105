@@ -117,6 +117,5 @@ Each simulation can be run directly from the command line. You can modify parame
     ```
 * **Expected Output**: The script will print the state of `cwnd` and `ssthresh` for each round to the terminal. More importantly, it will generate and display a plot, saving it as `cwnd_plot.png`. This plot visualizes the exponential and linear growth phases of `cwnd` and its reduction upon packet loss.
 
-    ![TCP Congestion Window Plot](cwnd_plot.png)
 
 ---
