@@ -77,10 +77,4 @@ The simulations use the `networkx` library for graph representation and algorith
      ...
     ```
 
-## 📜 Report
-
-A `report.pdf` is accompanied with this code, containing:
-* The network topology diagrams used.
-* Screenshots of the final routing table outputs from each script.
-* A comparative analysis of the protocols, focusing on convergence, overhead, and scalability.
 
